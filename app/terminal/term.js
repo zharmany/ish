@@ -15,6 +15,10 @@ window.onload = async function() {
     term.getPrefs().set('user-css-text', termCss);
     term.getPrefs().set('screen-padding-size', 4);
 
+    // hterm supports iTerm's inline image protocol,
+    // enabeling by default avoids an odd confirmation dialog
+    term.getPrefs().set('allow-inline-images', true);
+
     term.onTerminalReady = onTerminalReady;
     term.decorate(document.getElementById('terminal'));
 };
