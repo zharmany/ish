@@ -39,6 +39,7 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *barLeading;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *barTrailing;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *barButtonWidth;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *barHeight;
 @property (weak, nonatomic) IBOutlet UIView *settingsBadge;
 
 @property (weak, nonatomic) IBOutlet UIButton *infoButton;
@@ -95,9 +96,9 @@
         [self.hideKeyboardButton removeFromSuperview];
     }
     if (UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
-        self.barView.frame = CGRectMake(0, 0, 100, 48);
+        self.barHeight.constant = 36;
     } else {
-        self.barView.frame = CGRectMake(0, 0, 100, 55);
+        self.barHeight.constant = 43;
     }
     
     // SF Symbols is cool
@@ -119,7 +120,7 @@
             [self setNeedsStatusBarAppearanceUpdate];
         });
     }];
-    [UserPreferences.shared observe:@[@"theme", @"hideExtraKeysWithExternalKeyboard"]
+    [UserPreferences.shared observe:@[@"colorScheme", @"theme", @"hideExtraKeysWithExternalKeyboard"]
                             options:0 owner:self usingBlock:^(typeof(self) self) {
         dispatch_async(dispatch_get_main_queue(), ^{
             [self _updateStyleFromPreferences:YES];
@@ -281,8 +282,8 @@
     NSAssert(NSThread.isMainThread, @"This method needs to be called on the main thread");
     NSTimeInterval duration = animated ? 0.1 : 0;
     [UIView animateWithDuration:duration animations:^{
-        self.view.backgroundColor = UserPreferences.shared.theme.backgroundColor;
-        UIKeyboardAppearance keyAppearance = UserPreferences.shared.theme.keyboardAppearance;
+        self.view.backgroundColor = [[UIColor alloc] ish_initWithHexString:UserPreferences.shared.palette.backgroundColor];
+        UIKeyboardAppearance keyAppearance = UserPreferences.shared.keyboardAppearance;
         self.termView.keyboardAppearance = keyAppearance;
         for (BarButton *button in self.barButtons) {
             button.keyAppearance = keyAppearance;
@@ -299,9 +300,11 @@
         self.termView.inputAccessoryView = self.barView;
     }
     if (self.termView.inputAccessoryView != oldBarView && self.termView.isFirstResponder) {
-        self.ignoreKeyboardMotion = YES; // avoid infinite recursion
-        [self.termView reloadInputViews];
-        self.ignoreKeyboardMotion = NO;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.ignoreKeyboardMotion = YES; // avoid infinite recursion
+            [self.termView reloadInputViews];
+            self.ignoreKeyboardMotion = NO;
+        });
     }
 }
 - (void)_updateStyleAnimated {
@@ -313,7 +316,7 @@
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
-    return UserPreferences.shared.theme.statusBarStyle;
+    return UserPreferences.shared.statusBarStyle;
 }
 
 - (BOOL)prefersStatusBarHidden {
@@ -324,17 +327,25 @@
     if (self.ignoreKeyboardMotion)
         return;
 
-    CGRect keyboardFrame = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    CGRect screenKeyboardFrame = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    UIScreen *screen = UIScreen.mainScreen;
+    // notification.object is nil before iOS 16.1 and the correct UIScreen after iOS 16.1
+    if (notification.object != nil)
+        screen = notification.object;
+    CGRect keyboardFrame = [self.view convertRect:screenKeyboardFrame fromCoordinateSpace:screen.coordinateSpace];
     if (CGRectEqualToRect(keyboardFrame, CGRectZero))
         return;
-    NSLog(@"%@ %@", notification.name, [NSValue valueWithCGRect:keyboardFrame]);
+    CGRect intersection = CGRectIntersection(keyboardFrame, self.view.bounds);
+    keyboardFrame = intersection;
+    NSLog(@"%@ %@", notification.name, @(keyboardFrame));
     self.hasExternalKeyboard = keyboardFrame.size.height < 100;
-    CGFloat pad = UIScreen.mainScreen.bounds.size.height - keyboardFrame.origin.y;
-    if (pad != keyboardFrame.size.height) {
-        pad = 0; // keyboard is not right at the bottom of the screen, must be floating or something
-    }
-    if (pad == 0) {
-        pad = self.view.safeAreaInsets.bottom;
+    CGFloat pad = CGRectGetMaxY(self.view.bounds) - CGRectGetMinY(keyboardFrame);
+    // The keyboard appears to be undocked. This means it can either be split or
+    // truly floating. In the former case we want to keep the pad, but in the
+    // latter we should fall back to the input accessory view instead of the
+    // keyboard.
+    if (pad != keyboardFrame.size.height && keyboardFrame.size.width != UIScreen.mainScreen.bounds.size.width) {
+        pad = MAX(self.view.safeAreaInsets.bottom, self.termView.inputAccessoryView.frame.size.height);
     }
     // NSLog(@"pad %f", pad);
     self.bottomConstraint.constant = pad;
@@ -368,6 +379,16 @@
     }
 }
 
+- (void)traitCollectionDidChange:(UITraitCollection *)previousTraitCollection {
+    // Hack to resolve a layering mismatch between the the UI and preferences.
+    if (@available(iOS 12.0, *)) {
+        if (previousTraitCollection.userInterfaceStyle != self.traitCollection.userInterfaceStyle) {
+            // Ensure that the relevant things listening for this will update.
+            UserPreferences.shared.colorScheme = UserPreferences.shared.colorScheme;
+        }
+    }
+}
+
 #pragma mark Bar
 
 - (IBAction)showAbout:(id)sender {
@@ -386,21 +407,17 @@
 }
 
 - (void)resizeBar {
-    CGSize screen = UIScreen.mainScreen.bounds.size;
     CGSize bar = self.barView.bounds.size;
     // set sizing parameters on bar
     // numbers stolen from iVim and modified somewhat
     if (UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
         // phone
         [self setBarHorizontalPadding:6 verticalPadding:6 buttonWidth:32];
-    } else if (bar.width == screen.width || bar.width == screen.height) {
-        // full-screen ipad
+    } else if (bar.width >= 450) {
+        // wide ipad
         [self setBarHorizontalPadding:15 verticalPadding:8 buttonWidth:43];
-    } else if (bar.width <= 320) {
-        // slide over
-        [self setBarHorizontalPadding:8 verticalPadding:8 buttonWidth:26];
     } else {
-        // split view
+        // narrow ipad (slide over)
         [self setBarHorizontalPadding:10 verticalPadding:8 buttonWidth:36];
     }
     [UIView performWithoutAnimation:^{

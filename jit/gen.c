@@ -88,9 +88,10 @@ void gen_exit(struct gen_state *state) {
     return !end_block
 
 #define RESTORE_IP state->ip = state->orig_ip
-#define _READIMM(name, size) \
+#define _READIMM(name, size) do {\
     state->ip += size/8; \
-    if (!tlb_read(tlb, state->ip - size/8, &name, size/8)) SEGFAULT; else
+    if (!tlb_read(tlb, state->ip - size/8, &name, size/8)) SEGFAULT; \
+} while (0)
 
 #define READMODRM if (!modrm_decode32(&state->ip, tlb, &modrm)) SEGFAULT
 #define READADDR _READIMM(addr_offset, 32)
@@ -436,6 +437,14 @@ void helper_rdtsc(struct cpu_state *cpu);
 #define FSIN() h(fpu_sin)
 #define FCOS() h(fpu_cos)
 #define FXTRACT() h(fpu_xtract)
+#define FCMOVB(src) hh(fpu_cmovb, src)
+#define FCMOVE(src) hh(fpu_cmove, src)
+#define FCMOVBE(src) hh(fpu_cmovbe, src)
+#define FCMOVU(src) hh(fpu_cmovu, src)
+#define FCMOVNB(src) hh(fpu_cmovnb, src)
+#define FCMOVNE(src) hh(fpu_cmovne, src)
+#define FCMOVNBE(src) hh(fpu_cmovnbe, src)
+#define FCMOVNU(src) hh(fpu_cmovnu, src)
 
 // vector
 

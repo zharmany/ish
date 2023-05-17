@@ -21,7 +21,14 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		0FC2383C2991FBA6004C09EC /* mmx.c in Sources */ = {isa = PBXBuildFile; fileRef = 0FC2383B2991FB82004C09EC /* mmx.c */; };
+		491B31E62883BF22008EEFB0 /* ThemeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 491B31E52883BF22008EEFB0 /* ThemeViewController.m */; };
 		49302D8E277669D300C9885A /* ish.c in Sources */ = {isa = PBXBuildFile; fileRef = 49302D8D277669D300C9885A /* ish.c */; };
+		496C7AB227CC697E005D7613 /* Theme.m in Sources */ = {isa = PBXBuildFile; fileRef = 491C4C1E27C8FB65008B1DFA /* Theme.m */; };
+		496C7AB327CC734D005D7613 /* ThemesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 491C4C1627C8F84A008B1DFA /* ThemesViewController.m */; };
+		497A08BF29633FF400B323CF /* mach_exc.defs in Sources */ = {isa = PBXBuildFile; fileRef = 49087C26295DF1350058075B /* mach_exc.defs */; settings = {ATTRIBUTES = (Server, ); }; };
+		497A08C029633FFA00B323CF /* hook.c in Sources */ = {isa = PBXBuildFile; fileRef = 49087C14295DF0490058075B /* hook.c */; };
+		497A08C12963401100B323CF /* AccessibilityFixes.m in Sources */ = {isa = PBXBuildFile; fileRef = 497A08BC2961168400B323CF /* AccessibilityFixes.m */; };
 		497F6CF5254E5EA500C82F46 /* float80-test.c in Sources */ = {isa = PBXBuildFile; fileRef = 497F6C5A254E5C7E00C82F46 /* float80-test.c */; };
 		497F6CF6254E5EA500C82F46 /* float80.c in Sources */ = {isa = PBXBuildFile; fileRef = 497F6C66254E5C7F00C82F46 /* float80.c */; };
 		497F6CF7254E5EA500C82F46 /* fpu.c in Sources */ = {isa = PBXBuildFile; fileRef = 497F6C5D254E5C7E00C82F46 /* fpu.c */; };
@@ -97,6 +104,7 @@
 		497F6D3D254E5EA600C82F46 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = BB7D93822087C2890008DA78 /* main.c */; };
 		497F6D5C254E609700C82F46 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = BB7D93822087C2890008DA78 /* main.c */; };
 		497F6D87254E62E100C82F46 /* libish.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BB13F7DC200AD81D003D1C4D /* libish.a */; };
+		49FF844B2A06249F00850B7A /* ExceptionExfiltrator.m in Sources */ = {isa = PBXBuildFile; fileRef = 49FF844A2A06249F00850B7A /* ExceptionExfiltrator.m */; };
 		BB0F552E239F8A790032A2A1 /* Icons.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB0F552D239F8A790032A2A1 /* Icons.plist */; };
 		BB10E5C9248DBAAC009C7A74 /* libarchive.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BB10E5C8248DBAA1009C7A74 /* libarchive.a */; };
 		BB10E5D0248DC21D009C7A74 /* Roots.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB10E5CF248DC21D009C7A74 /* Roots.storyboard */; };
@@ -175,7 +183,7 @@
 		BB88F4942154760800A341FD /* FileProviderExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = BB88F4932154760800A341FD /* FileProviderExtension.m */; };
 		BB88F4972154760800A341FD /* FileProviderItem.m in Sources */ = {isa = PBXBuildFile; fileRef = BB88F4962154760800A341FD /* FileProviderItem.m */; };
 		BB88F49A2154760800A341FD /* FileProviderEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = BB88F4992154760800A341FD /* FileProviderEnumerator.m */; };
-		BB88F49F2154760800A341FD /* iSHFileProvider.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = BB88F4902154760800A341FD /* iSHFileProvider.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		BB88F49F2154760800A341FD /* iSHFileProvider.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = BB88F4902154760800A341FD /* iSHFileProvider.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		BB8C3AFF26B7B8CF00E38DDC /* fakefs.c in Sources */ = {isa = PBXBuildFile; fileRef = BB8C3AFD26B7B8AF00E38DDC /* fakefs.c */; };
 		BB9C7B87240A2B1E00F5D4F0 /* AppGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9C7B84240A240E00F5D4F0 /* AppGroup.m */; };
 		BBA8E2C1236FF5EA00515F76 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBA8E2C0236FF5EA00515F76 /* SystemConfiguration.framework */; };
@@ -184,7 +192,7 @@
 		BBBD741426B7BE2E00321AC5 /* libfakefs.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BB21A16F2689041500BD19B4 /* libfakefs.a */; };
 		BBBF7B5C2415CDBB00EC4C14 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = BBBF7B5B2415CDBB00EC4C14 /* Settings.bundle */; };
 		BBBF9CBD27C217B6002A30F7 /* PasteboardDeviceLinux.c in Sources */ = {isa = PBXBuildFile; fileRef = BBBF9CBB27C217A6002A30F7 /* PasteboardDeviceLinux.c */; };
-		BBBF9CBF27C44114002A30F7 /* iSHFileProvider.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = BB88F4902154760800A341FD /* iSHFileProvider.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		BBBF9CBF27C44114002A30F7 /* iSHFileProvider.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = BB88F4902154760800A341FD /* iSHFileProvider.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		BBBFE94921C5CFF100509DD5 /* NSError+ISHErrno.m in Sources */ = {isa = PBXBuildFile; fileRef = BB13F4DD21C5770000343E17 /* NSError+ISHErrno.m */; };
 		BBC3863E276817A900CC8C2E /* UpgradeRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA5D87D27536E7600B39D77 /* UpgradeRootViewController.m */; };
 		BBC3863F276817AD00CC8C2E /* CurrentRoot.m in Sources */ = {isa = PBXBuildFile; fileRef = BB565EA32734F1FB00C93EAE /* CurrentRoot.m */; };
@@ -234,6 +242,22 @@
 		BBFB2CEC2590296B00545EAB /* libish_emu.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BBFB2C5B2590257E00545EAB /* libish_emu.a */; };
 		BBFB55662158644C00DFE6DE /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = BBFB55652158644C00DFE6DE /* libresolv.tbd */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXBuildRule section */
+		497A08BE29633FC100B323CF /* PBXBuildRule */ = {
+			isa = PBXBuildRule;
+			compilerSpec = com.apple.compilers.proxy.script;
+			fileType = sourcecode.mig;
+			inputFiles = (
+			);
+			isEditable = 1;
+			outputFiles = (
+				"$(DERIVED_FILE_DIR)/mach_excServer.h",
+				"$(DERIVED_FILE_DIR)/mach_excServer.c",
+			);
+			script = "set -x\n\nunset IPHONEOS_DEPLOYMENT_TARGET\n\nsdk=\"$(dirname \"$SCRIPT_INPUT_FILE\")/../../../\"\ncd \"$DERIVED_FILE_DIR\"\nmig -sheader \"$DERIVED_FILE_DIR/mach_excServer.h\" -server \"$DERIVED_FILE_DIR/mach_excServer.c\" -Wno-incompatible-sysroot -isysroot \"$sdk\" \"$SCRIPT_INPUT_FILE\"\n";
+		};
+/* End PBXBuildRule section */
 
 /* Begin PBXContainerItemProxy section */
 		497F6D5A254E609000C82F46 /* PBXContainerItemProxy */ = {
@@ -367,36 +391,48 @@
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
-		BB88F4A32154760800A341FD /* Embed App Extensions */ = {
+		BB88F4A32154760800A341FD /* Embed Foundation Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				BB88F49F2154760800A341FD /* iSHFileProvider.appex in Embed App Extensions */,
+				BB88F49F2154760800A341FD /* iSHFileProvider.appex in Embed Foundation Extensions */,
 			);
-			name = "Embed App Extensions";
+			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		BBEF1997268066D1001225BD /* Embed App Extensions */ = {
+		BBEF1997268066D1001225BD /* Embed Foundation Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				BBBF9CBF27C44114002A30F7 /* iSHFileProvider.appex in Embed App Extensions */,
+				BBBF9CBF27C44114002A30F7 /* iSHFileProvider.appex in Embed Foundation Extensions */,
 			);
-			name = "Embed App Extensions";
+			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0FC2383B2991FB82004C09EC /* mmx.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = mmx.c; sourceTree = "<group>"; };
 		408A2639236440F8008A4E81 /* iOSFS.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iOSFS.m; sourceTree = "<group>"; };
 		408A263B23644102008A4E81 /* iOSFS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = iOSFS.h; sourceTree = "<group>"; };
+		49087C13295DF0490058075B /* hook.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = hook.h; sourceTree = "<group>"; };
+		49087C14295DF0490058075B /* hook.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = hook.c; sourceTree = "<group>"; };
+		49087C26295DF1350058075B /* mach_exc.defs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.mig; name = mach_exc.defs; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/mach/mach_exc.defs; sourceTree = DEVELOPER_DIR; };
+		491B31E42883BF22008EEFB0 /* ThemeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ThemeViewController.h; sourceTree = "<group>"; };
+		491B31E52883BF22008EEFB0 /* ThemeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ThemeViewController.m; sourceTree = "<group>"; };
+		491C4C1527C8F84A008B1DFA /* ThemesViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ThemesViewController.h; sourceTree = "<group>"; };
+		491C4C1627C8F84A008B1DFA /* ThemesViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ThemesViewController.m; sourceTree = "<group>"; };
+		491C4C1D27C8FB65008B1DFA /* Theme.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Theme.h; sourceTree = "<group>"; };
+		491C4C1E27C8FB65008B1DFA /* Theme.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Theme.m; sourceTree = "<group>"; };
 		49302D8D277669D300C9885A /* ish.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = ish.c; sourceTree = "<group>"; };
 		49302D972777FAB400C9885A /* ish.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ish.h; sourceTree = "<group>"; };
+		493B378F290F5320000C41ED /* CLI.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = CLI.xcconfig; sourceTree = "<group>"; };
 		494D03F72727DAC6004F0CCE /* xcode-ninja.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "xcode-ninja.sh"; sourceTree = "<group>"; };
+		497A08BC2961168400B323CF /* AccessibilityFixes.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AccessibilityFixes.m; sourceTree = "<group>"; };
 		497F6BDA254E5C0D00C82F46 /* mem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mem.h; sourceTree = "<group>"; };
 		497F6BDB254E5C0D00C82F46 /* path.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = path.c; sourceTree = "<group>"; };
 		497F6BDC254E5C0D00C82F46 /* dev.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dev.c; sourceTree = "<group>"; };
@@ -542,6 +578,8 @@
 		497F6CD3254E5CC800C82F46 /* bits.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bits.h; sourceTree = "<group>"; };
 		497F6CE4254E5E4C00C82F46 /* MakeXcodeAutoCompleteWork */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MakeXcodeAutoCompleteWork; sourceTree = BUILT_PRODUCTS_DIR; };
 		497F6D47254E605F00C82F46 /* ish */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ish; sourceTree = BUILT_PRODUCTS_DIR; };
+		49FF844A2A06249F00850B7A /* ExceptionExfiltrator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExceptionExfiltrator.m; sourceTree = "<group>"; };
+		49FF844C2A0624AF00850B7A /* ExceptionExfiltrator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExceptionExfiltrator.h; sourceTree = "<group>"; };
 		650B337222EA235C00B4C03E /* PasteboardDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PasteboardDevice.h; sourceTree = "<group>"; };
 		650B337322EA235C00B4C03E /* PasteboardDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PasteboardDevice.m; sourceTree = "<group>"; };
 		8632A7BD219A59FB00F02325 /* UserPreferences.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserPreferences.h; sourceTree = "<group>"; };
@@ -818,21 +856,22 @@
 		BB0B848D2586A4B100208600 /* Configs */ = {
 			isa = PBXGroup;
 			children = (
-				BB0B85AD2586F3EB00208600 /* Project.xcconfig */,
 				BB0B86CD2586FD8800208600 /* App.xcconfig */,
 				BBEF192C26806546001225BD /* AppLib.xcconfig */,
+				493B378F290F5320000C41ED /* CLI.xcconfig */,
 				BB0B86D52587009D00208600 /* iOS.xcconfig */,
-				BBFB2CDA259028DC00545EAB /* StaticLib.xcconfig */,
-				BBECF3BA2691379100DEC937 /* StaticLibLinux.xcconfig */,
 				BBEF19BA26806D7E001225BD /* Linux.xcconfig */,
 				BB21A18C268951CA00BD19B4 /* NotLinux.xcconfig */,
-				BB0B848E2586A4CF00208600 /* XcodeDefault.xcconfig */,
-				BB0B859B2586F13200208600 /* XcodeDebug.xcconfig */,
-				BB0B859C2586F19000208600 /* XcodeRelease.xcconfig */,
+				BB0B85AD2586F3EB00208600 /* Project.xcconfig */,
 				BB0B85A42586F1CB00208600 /* ProjectDebug.xcconfig */,
-				BB0B85A52586F1E100208600 /* ProjectRelease.xcconfig */,
 				BB28C7532689522C00BDC834 /* ProjectDebugLinux.xcconfig */,
+				BB0B85A52586F1E100208600 /* ProjectRelease.xcconfig */,
 				BB28C7522689522700BDC834 /* ProjectReleaseLinux.xcconfig */,
+				BBFB2CDA259028DC00545EAB /* StaticLib.xcconfig */,
+				BBECF3BA2691379100DEC937 /* StaticLibLinux.xcconfig */,
+				BB0B859B2586F13200208600 /* XcodeDebug.xcconfig */,
+				BB0B848E2586A4CF00208600 /* XcodeDefault.xcconfig */,
+				BB0B859C2586F19000208600 /* XcodeRelease.xcconfig */,
 			);
 			name = Configs;
 			sourceTree = "<group>";
@@ -1168,6 +1207,7 @@
 		BB8636F82167F4F200E7ADC0 /* emu */ = {
 			isa = PBXGroup;
 			children = (
+				0FC2383B2991FB82004C09EC /* mmx.c */,
 				497F6C62254E5C7F00C82F46 /* cpu.h */,
 				497F6C58254E5C7E00C82F46 /* cpuid.h */,
 				497F6C5E254E5C7E00C82F46 /* decode.h */,
@@ -1242,18 +1282,24 @@
 		BBFB557221586C6600DFE6DE /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				497A08BC2961168400B323CF /* AccessibilityFixes.m */,
 				BB9C7B86240A29DE00F5D4F0 /* AppGroup.h */,
 				BB9C7B84240A240E00F5D4F0 /* AppGroup.m */,
 				BB455E0F1FB37F6600AFB48B /* DelayedUITask.h */,
 				BB455E101FB37F6600AFB48B /* DelayedUITask.m */,
-				BBFB556F21586C4800DFE6DE /* UIViewController+Extras.h */,
-				BBFB557021586C4800DFE6DE /* UIViewController+Extras.m */,
-				BBFB557A215878C600DFE6DE /* UIApplication+OpenURL.h */,
-				BBFB557B215878C600DFE6DE /* UIApplication+OpenURL.m */,
+				49FF844C2A0624AF00850B7A /* ExceptionExfiltrator.h */,
+				49FF844A2A06249F00850B7A /* ExceptionExfiltrator.m */,
+				49087C14295DF0490058075B /* hook.c */,
+				49087C13295DF0490058075B /* hook.h */,
+				49087C26295DF1350058075B /* mach_exc.defs */,
 				BBCED895255BB65A00CA0701 /* NSObject+SaneKVO.h */,
 				BBCED896255BB65A00CA0701 /* NSObject+SaneKVO.m */,
 				BB149E7E256DC97C00F57815 /* PassthroughView.h */,
 				BB149E7F256DC97C00F57815 /* PassthroughView.m */,
+				BBFB557A215878C600DFE6DE /* UIApplication+OpenURL.h */,
+				BBFB557B215878C600DFE6DE /* UIApplication+OpenURL.m */,
+				BBFB556F21586C4800DFE6DE /* UIViewController+Extras.h */,
+				BBFB557021586C4800DFE6DE /* UIViewController+Extras.m */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -1262,22 +1308,28 @@
 			isa = PBXGroup;
 			children = (
 				BBBCE7E521D2F02200CA00B3 /* About.storyboard */,
+				9A28E4E8219A8B670073D200 /* AboutAppearanceViewController.h */,
+				9A28E4E9219A8B670073D200 /* AboutAppearanceViewController.m */,
+				BB82A7FB21B4C2E8006AA5FD /* AboutExternalKeyboardViewController.h */,
+				BB82A7FC21B4C2E8006AA5FD /* AboutExternalKeyboardViewController.m */,
 				BB1D9D91234A8FE100F364E8 /* AboutNavigationController.h */,
 				BB1D9D92234A8FE100F364E8 /* AboutNavigationController.m */,
 				BBFB5577215876CD00DFE6DE /* AboutViewController.h */,
 				BBFB5578215876CD00DFE6DE /* AboutViewController.m */,
-				8632A7BD219A59FB00F02325 /* UserPreferences.h */,
-				8632A7BE219A59FB00F02325 /* UserPreferences.m */,
-				9A28E4E8219A8B670073D200 /* AboutAppearanceViewController.h */,
-				9A28E4E9219A8B670073D200 /* AboutAppearanceViewController.m */,
-				BB101B362364CF57000A93BC /* FontPickerViewController.h */,
-				BB101B372364CF57000A93BC /* FontPickerViewController.m */,
-				BB82A7FB21B4C2E8006AA5FD /* AboutExternalKeyboardViewController.h */,
-				BB82A7FC21B4C2E8006AA5FD /* AboutExternalKeyboardViewController.m */,
 				BB267FA423A48F1500ED7CAF /* AltIconViewController.h */,
 				BB267FA523A48F1500ED7CAF /* AltIconViewController.m */,
+				BB101B362364CF57000A93BC /* FontPickerViewController.h */,
+				BB101B372364CF57000A93BC /* FontPickerViewController.m */,
+				491C4C1D27C8FB65008B1DFA /* Theme.h */,
+				491C4C1E27C8FB65008B1DFA /* Theme.m */,
+				491C4C1527C8F84A008B1DFA /* ThemesViewController.h */,
+				491C4C1627C8F84A008B1DFA /* ThemesViewController.m */,
+				491B31E42883BF22008EEFB0 /* ThemeViewController.h */,
+				491B31E52883BF22008EEFB0 /* ThemeViewController.m */,
 				BBA5D87C27536E7600B39D77 /* UpgradeRootViewController.h */,
 				BBA5D87D27536E7600B39D77 /* UpgradeRootViewController.m */,
+				8632A7BD219A59FB00F02325 /* UserPreferences.h */,
+				8632A7BE219A59FB00F02325 /* UserPreferences.m */,
 			);
 			name = About;
 			sourceTree = "<group>";
@@ -1421,7 +1473,7 @@
 				BB034E8C263643C10000A498 /* Generate APK Repositories File */,
 				BB4A53AC1FAA49CA00A72ACE /* Compile JavaScript */,
 				BB792B4E1F96D90D00FFB7A4 /* Resources */,
-				BB88F4A32154760800A341FD /* Embed App Extensions */,
+				BB88F4A32154760800A341FD /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
@@ -1493,6 +1545,7 @@
 				BBEF191A26806364001225BD /* Sources */,
 			);
 			buildRules = (
+				497A08BE29633FC100B323CF /* PBXBuildRule */,
 			);
 			dependencies = (
 			);
@@ -1511,7 +1564,7 @@
 				BBEF197A268066D1001225BD /* Generate APK Repositories File */,
 				BBEF197B268066D1001225BD /* Compile JavaScript */,
 				BBEF197C268066D1001225BD /* Resources */,
-				BBEF1997268066D1001225BD /* Embed App Extensions */,
+				BBEF1997268066D1001225BD /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
@@ -1548,7 +1601,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = "";
-				LastUpgradeCheck = 1330;
+				LastUpgradeCheck = 1410;
 				TargetAttributes = {
 					497F6CE3254E5E4C00C82F46 = {
 						CreatedOnToolsVersion = 12.2;
@@ -1772,6 +1825,7 @@
 		};
 		BB13F813200AEFAC003D1C4D /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -1786,6 +1840,7 @@
 		};
 		BB21A1692689041500BD19B4 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -1921,6 +1976,7 @@
 		};
 		BBFB2C572590257E00545EAB /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -1991,6 +2047,7 @@
 				497F6D25254E5EA600C82F46 /* futex.c in Sources */,
 				497F6D26254E5EA600C82F46 /* getset.c in Sources */,
 				497F6D27254E5EA600C82F46 /* group.c in Sources */,
+				0FC2383C2991FBA6004C09EC /* mmx.c in Sources */,
 				497F6D28254E5EA600C82F46 /* init.c in Sources */,
 				497F6D29254E5EA600C82F46 /* ipc.c in Sources */,
 				497F6D2A254E5EA600C82F46 /* log.c in Sources */,
@@ -2083,15 +2140,19 @@
 			files = (
 				BB28C79226896B1F00BDC834 /* AboutAppearanceViewController.m in Sources */,
 				BB28C79326896B1F00BDC834 /* AltIconViewController.m in Sources */,
+				491B31E62883BF22008EEFB0 /* ThemeViewController.m in Sources */,
 				BB28C7B226896C4600BDC834 /* main.m in Sources */,
+				496C7AB227CC697E005D7613 /* Theme.m in Sources */,
 				BB28C79426896B1F00BDC834 /* AboutNavigationController.m in Sources */,
 				BB28C79526896B1F00BDC834 /* TerminalViewController.m in Sources */,
 				BB123ACE26C9F13500419CDA /* IOSCalls.m in Sources */,
 				BBC3863F276817AD00CC8C2E /* CurrentRoot.m in Sources */,
 				BB28C79626896B1F00BDC834 /* ProgressReportViewController.m in Sources */,
 				BB28C79726896B1F00BDC834 /* TerminalView.m in Sources */,
+				497A08BF29633FF400B323CF /* mach_exc.defs in Sources */,
 				BB28C79826896B1F00BDC834 /* ScrollbarView.m in Sources */,
 				BB28C79926896B1F00BDC834 /* DelayedUITask.m in Sources */,
+				497A08C029633FFA00B323CF /* hook.c in Sources */,
 				BB28C7BF2689799800BDC834 /* Roots.m in Sources */,
 				BB28C79A26896B1F00BDC834 /* Terminal.m in Sources */,
 				BB28C79B26896B1F00BDC834 /* FontPickerViewController.m in Sources */,
@@ -2105,9 +2166,12 @@
 				BB28C7A426896B1F00BDC834 /* AppGroup.m in Sources */,
 				BBECF3BC26913F1600DEC937 /* AppDelegate.m in Sources */,
 				BB28C7A526896B1F00BDC834 /* UIApplication+OpenURL.m in Sources */,
+				49FF844B2A06249F00850B7A /* ExceptionExfiltrator.m in Sources */,
+				497A08C12963401100B323CF /* AccessibilityFixes.m in Sources */,
 				BB28C7A626896B1F00BDC834 /* AboutViewController.m in Sources */,
 				BB28C7A726896B1F00BDC834 /* UIViewController+Extras.m in Sources */,
 				BB28C7A826896B1F00BDC834 /* NSObject+SaneKVO.m in Sources */,
+				496C7AB327CC734D005D7613 /* ThemesViewController.m in Sources */,
 				BB77636726E486A7008DB44A /* fakefs.c in Sources */,
 				BB28C7B826896CE600BDC834 /* ArrowBarButton.m in Sources */,
 			);
@@ -2228,35 +2292,29 @@
 /* Begin XCBuildConfiguration section */
 		497F6CE8254E5E4C00C82F46 /* Debug-ApplePleaseFixFB19282108 */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BB0B86D52587009D00208600 /* iOS.xcconfig */;
 			buildSettings = {
 			};
 			name = "Debug-ApplePleaseFixFB19282108";
 		};
 		497F6CE9254E5E4C00C82F46 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BB0B86D52587009D00208600 /* iOS.xcconfig */;
 			buildSettings = {
 			};
 			name = Release;
 		};
 		497F6D4C254E605F00C82F46 /* Debug-ApplePleaseFixFB19282108 */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 493B378F290F5320000C41ED /* CLI.xcconfig */;
 			buildSettings = {
-				ENABLE_HARDENED_RUNTIME = YES;
-				HEADER_SEARCH_PATHS = "$(SRCROOT)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-				SUPPORTED_PLATFORMS = macosx;
 			};
 			name = "Debug-ApplePleaseFixFB19282108";
 		};
 		497F6D4D254E605F00C82F46 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 493B378F290F5320000C41ED /* CLI.xcconfig */;
 			buildSettings = {
-				ENABLE_HARDENED_RUNTIME = YES;
-				HEADER_SEARCH_PATHS = "$(SRCROOT)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-				SUPPORTED_PLATFORMS = macosx;
 			};
 			name = Release;
 		};
@@ -2379,7 +2437,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = BB0B85A42586F1CB00208600 /* ProjectDebug.xcconfig */;
 			buildSettings = {
-				CURRENT_PROJECT_VERSION = 377;
+				CURRENT_PROJECT_VERSION = 492;
 			};
 			name = "Debug-ApplePleaseFixFB19282108";
 		};
@@ -2387,7 +2445,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = BB0B85A52586F1E100208600 /* ProjectRelease.xcconfig */;
 			buildSettings = {
-				CURRENT_PROJECT_VERSION = 377;
+				CURRENT_PROJECT_VERSION = 492;
 			};
 			name = Release;
 		};
@@ -2409,7 +2467,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = BB28C7532689522C00BDC834 /* ProjectDebugLinux.xcconfig */;
 			buildSettings = {
-				CURRENT_PROJECT_VERSION = 377;
+				CURRENT_PROJECT_VERSION = 492;
 			};
 			name = DebugLinux;
 		};
@@ -2499,18 +2557,15 @@
 		};
 		BB7F62102688EAB5003C0220 /* DebugLinux */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BB0B86D52587009D00208600 /* iOS.xcconfig */;
 			buildSettings = {
 			};
 			name = DebugLinux;
 		};
 		BB7F62112688EAB5003C0220 /* DebugLinux */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 493B378F290F5320000C41ED /* CLI.xcconfig */;
 			buildSettings = {
-				ENABLE_HARDENED_RUNTIME = YES;
-				HEADER_SEARCH_PATHS = "$(SRCROOT)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-				SUPPORTED_PLATFORMS = macosx;
 			};
 			name = DebugLinux;
 		};
@@ -2626,7 +2681,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = BB28C7522689522700BDC834 /* ProjectReleaseLinux.xcconfig */;
 			buildSettings = {
-				CURRENT_PROJECT_VERSION = 377;
+				CURRENT_PROJECT_VERSION = 492;
 			};
 			name = ReleaseLinux;
 		};
@@ -2715,18 +2770,15 @@
 		};
 		BBEF19B626806D1F001225BD /* ReleaseLinux */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BB0B86D52587009D00208600 /* iOS.xcconfig */;
 			buildSettings = {
 			};
 			name = ReleaseLinux;
 		};
 		BBEF19B726806D1F001225BD /* ReleaseLinux */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 493B378F290F5320000C41ED /* CLI.xcconfig */;
 			buildSettings = {
-				ENABLE_HARDENED_RUNTIME = YES;
-				HEADER_SEARCH_PATHS = "$(SRCROOT)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-				SUPPORTED_PLATFORMS = macosx;
 			};
 			name = ReleaseLinux;
 		};
