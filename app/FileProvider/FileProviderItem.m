@@ -43,7 +43,7 @@
     if (self.isRoot) {
         fd = open(_mount->source, O_DIRECTORY | O_RDONLY);
     } else {
-        db_begin(&_mount->db);
+        db_begin_read(&_mount->db);
         sqlite3_stmt *stmt = _mount->db.stmt.path_from_inode;
         sqlite3_bind_int64(_mount->db.stmt.path_from_inode, 1, _identifier.longLongValue);
         while (db_exec(&_mount->db, stmt)) {
@@ -74,7 +74,8 @@
     char path[PATH_MAX] = "";
     int err = fcntl(_fd, F_GETPATH, path);
     [self handleError:err inFunction:@"getpath"];
-    return [NSString stringWithUTF8String:path + strlen(_mount->source)];
+    const char *myPath = path + strlen(_mount->source);
+    return [NSFileManager.defaultManager stringWithFileSystemRepresentation:myPath length:strlen(myPath)];
 }
 
 - (NSURL *)URL {
@@ -86,11 +87,11 @@
 
 - (struct ish_stat)ishStat {
     struct ish_stat stat = {};
-    db_begin(&_mount->db);
+    db_begin_read(&_mount->db);
     inode_t inode = _identifier.longLongValue;
     if ([_identifier isEqualToString:NSFileProviderRootContainerItemIdentifier])
         inode = path_get_inode(&_mount->db, "");
-    inode_read_stat(&_mount->db, inode, &stat);
+    inode_read_stat_or_die(&_mount->db, inode, &stat);
     db_commit(&_mount->db);
     return stat;
 }
@@ -114,7 +115,7 @@
     NSString *parentPath = self.path.stringByDeletingLastPathComponent;
     if ([parentPath isEqualToString:@"/"])
         return NSFileProviderRootContainerItemIdentifier;
-    db_begin(&_mount->db);
+    db_begin_read(&_mount->db);
     inode_t parentInode = path_get_inode(&_mount->db, parentPath.UTF8String);
     db_commit(&_mount->db);
     assert(parentInode != 0);
@@ -230,8 +231,7 @@
 
 - (void)handleError:(long)err inFunction:(NSString *)func {
     if (err < 0) {
-        NSLog(@"%@ returned %ld %d", func, err, errno);
-        abort();
+        [NSException raise:NSGenericException format:@"%@ returned %ld %d", func, err, errno];
     }
 }
 

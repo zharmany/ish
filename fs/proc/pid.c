@@ -1,6 +1,6 @@
 #include <string.h>
 #include <sys/stat.h>
-#include "emu/memory.h"
+#include "kernel/memory.h"
 #include "kernel/calls.h"
 #include "fs/proc.h"
 #include "fs/fd.h"
@@ -172,6 +172,16 @@ out_free_task:
     return err;
 }
 
+static int proc_pid_mem_show(struct proc_entry *entry, struct proc_data *buf) {
+    // mem_show does not need to do any data set-up. The /proc/mem read/write 
+    // operations do not rely on this set-up as they call user_read/write 
+    // operations directly.
+
+    (void)entry;
+    (void)buf;
+    return 0;
+}
+
 void proc_maps_dump(struct task *task, struct proc_data *buf) {
     struct mem *mem = task->mem;
     if (mem == NULL)
@@ -315,14 +325,26 @@ static bool proc_pid_task_readdir(struct proc_entry *entry, unsigned long *index
     return !(*index)++;
 }
 
+static int proc_pid_cwd_readlink(struct proc_entry *entry, char *buf) {
+    struct task *task = proc_get_task(entry);
+    if (task == NULL)
+        return _ESRCH;
+    lock(&task->fs->lock);
+    int err = generic_getpath(task->fs->pwd, buf);
+    unlock(&task->fs->lock);
+    proc_put_task(task);
+    return err;
+}
+
 
 struct proc_children proc_pid_children = PROC_CHILDREN({
     {"auxv", .show = proc_pid_auxv_show},
     {"cmdline", .show = proc_pid_cmdline_show},
+    {"cwd", S_IFLNK, .readlink = proc_pid_cwd_readlink},
     {"exe", S_IFLNK, .readlink = proc_pid_exe_readlink},
     {"fd", S_IFDIR, .readdir = proc_pid_fd_readdir},
     {"maps", .show = proc_pid_maps_show},
-    {"mem", .pread = proc_pid_mem_pread, .pwrite = proc_pid_mem_pwrite},
+    {"mem", .pread = proc_pid_mem_pread, .pwrite = proc_pid_mem_pwrite, .show = proc_pid_mem_show},
     {"stat", .show = proc_pid_stat_show},
     {"statm", .show = proc_pid_statm_show},
     {"task", S_IFDIR, .readdir = proc_pid_task_readdir},

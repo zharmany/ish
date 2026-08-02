@@ -8,7 +8,8 @@
 struct fakefs_db {
     sqlite3 *db;
     struct {
-        sqlite3_stmt *begin;
+        sqlite3_stmt *begin_deferred;
+        sqlite3_stmt *begin_immediate;
         sqlite3_stmt *commit;
         sqlite3_stmt *rollback;
         sqlite3_stmt *path_get_inode;
@@ -29,7 +30,8 @@ struct fakefs_db {
 int fake_db_init(struct fakefs_db *fs, const char *db_path, int root_fd);
 int fake_db_deinit(struct fakefs_db *fs);
 
-void db_begin(struct fakefs_db *fs);
+void db_begin_read(struct fakefs_db *fs);
+void db_begin_write(struct fakefs_db *fs);
 void db_commit(struct fakefs_db *fs);
 void db_rollback(struct fakefs_db *fs);
 
@@ -50,7 +52,8 @@ inode_t path_get_inode(struct fakefs_db *fs, const char *path);
 bool path_read_stat(struct fakefs_db *fs, const char *path, struct ish_stat *stat, uint64_t *inode);
 inode_t path_create(struct fakefs_db *fs, const char *path, struct ish_stat *stat);
 
-void inode_read_stat(struct fakefs_db *fs, inode_t inode, struct ish_stat *stat);
+bool inode_read_stat_if_exist(struct fakefs_db *fs, inode_t inode, struct ish_stat *stat);
+void inode_read_stat_or_die(struct fakefs_db *fs, inode_t inode, struct ish_stat *stat);
 void inode_write_stat(struct fakefs_db *fs, inode_t inode, struct ish_stat *stat);
 
 void path_link(struct fakefs_db *fs, const char *src, const char *dst);

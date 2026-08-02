@@ -32,7 +32,6 @@
 		497F6CF5254E5EA500C82F46 /* float80-test.c in Sources */ = {isa = PBXBuildFile; fileRef = 497F6C5A254E5C7E00C82F46 /* float80-test.c */; };
 		497F6CF6254E5EA500C82F46 /* float80.c in Sources */ = {isa = PBXBuildFile; fileRef = 497F6C66254E5C7F00C82F46 /* float80.c */; };
 		497F6CF7254E5EA500C82F46 /* fpu.c in Sources */ = {isa = PBXBuildFile; fileRef = 497F6C5D254E5C7E00C82F46 /* fpu.c */; };
-		497F6CF8254E5EA500C82F46 /* interp.c in Sources */ = {isa = PBXBuildFile; fileRef = 497F6C67254E5C7F00C82F46 /* interp.c */; };
 		497F6CF9254E5EA500C82F46 /* memory.c in Sources */ = {isa = PBXBuildFile; fileRef = 497F6C60254E5C7F00C82F46 /* memory.c */; };
 		497F6CFA254E5EA500C82F46 /* tlb.c in Sources */ = {isa = PBXBuildFile; fileRef = 497F6C59254E5C7E00C82F46 /* tlb.c */; };
 		497F6CFB254E5EA500C82F46 /* vec.c in Sources */ = {isa = PBXBuildFile; fileRef = 497F6C64254E5C7F00C82F46 /* vec.c */; };
@@ -66,7 +65,7 @@
 		497F6D17254E5EA600C82F46 /* tty.c in Sources */ = {isa = PBXBuildFile; fileRef = 497F6BE2254E5C0D00C82F46 /* tty.c */; };
 		497F6D18254E5EA600C82F46 /* gen.c in Sources */ = {isa = PBXBuildFile; fileRef = 497F6C3D254E5C4F00C82F46 /* gen.c */; };
 		497F6D19254E5EA600C82F46 /* helpers.c in Sources */ = {isa = PBXBuildFile; fileRef = 497F6C3B254E5C4F00C82F46 /* helpers.c */; };
-		497F6D1A254E5EA600C82F46 /* jit.c in Sources */ = {isa = PBXBuildFile; fileRef = 497F6C40254E5C4F00C82F46 /* jit.c */; };
+		497F6D1A254E5EA600C82F46 /* asbestos.c in Sources */ = {isa = PBXBuildFile; fileRef = 497F6C40254E5C4F00C82F46 /* asbestos.c */; };
 		497F6D1B254E5EA600C82F46 /* offsets.c in Sources */ = {isa = PBXBuildFile; fileRef = 497F6C3C254E5C4F00C82F46 /* offsets.c */; };
 		497F6D1C254E5EA600C82F46 /* calls.c in Sources */ = {isa = PBXBuildFile; fileRef = 497F6C9F254E5C9800C82F46 /* calls.c */; };
 		497F6D1D254E5EA600C82F46 /* epoll.c in Sources */ = {isa = PBXBuildFile; fileRef = 497F6C7D254E5C9700C82F46 /* epoll.c */; };
@@ -190,6 +189,8 @@
 		BBAEE339249B58E80069EBB5 /* libbz2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = BBAEE338249B58E80069EBB5 /* libbz2.tbd */; };
 		BBBCE7E321D2F02200CA00B3 /* About.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BBBCE7E521D2F02200CA00B3 /* About.storyboard */; };
 		BBBD741426B7BE2E00321AC5 /* libfakefs.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BB21A16F2689041500BD19B4 /* libfakefs.a */; };
+		BBBDDF922CE0122F0071F1F3 /* emu_asbestos.c in Sources */ = {isa = PBXBuildFile; fileRef = BBBDDF912CE0122F0071F1F3 /* emu_asbestos.c */; };
+		BBBDDF932CE0132F0071F1F3 /* libiSHLinuxUser.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BBBDDF8F2CE00F6B0071F1F3 /* libiSHLinuxUser.a */; };
 		BBBF7B5C2415CDBB00EC4C14 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = BBBF7B5B2415CDBB00EC4C14 /* Settings.bundle */; };
 		BBBF9CBD27C217B6002A30F7 /* PasteboardDeviceLinux.c in Sources */ = {isa = PBXBuildFile; fileRef = BBBF9CBB27C217A6002A30F7 /* PasteboardDeviceLinux.c */; };
 		BBBF9CBF27C44114002A30F7 /* iSHFileProvider.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = BB88F4902154760800A341FD /* iSHFileProvider.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -198,6 +199,7 @@
 		BBC3863F276817AD00CC8C2E /* CurrentRoot.m in Sources */ = {isa = PBXBuildFile; fileRef = BB565EA32734F1FB00C93EAE /* CurrentRoot.m */; };
 		BBD23D5F258DA450003DCB40 /* Screenshots.m in Sources */ = {isa = PBXBuildFile; fileRef = BBD23D5E258DA450003DCB40 /* Screenshots.m */; };
 		BBD23D77258DA4BC003DCB40 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD23D76258DA4BC003DCB40 /* SnapshotHelper.swift */; };
+		BBE64AC22A198FCC00589372 /* ExceptionExfiltrator.m in Sources */ = {isa = PBXBuildFile; fileRef = 49FF844A2A06249F00850B7A /* ExceptionExfiltrator.m */; };
 		BBECF3AD269132F400DEC937 /* LinuxInterop.c in Sources */ = {isa = PBXBuildFile; fileRef = BBECF39D2691313B00DEC937 /* LinuxInterop.c */; };
 		BBECF3AE2691330F00DEC937 /* libiSHLinux.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BBECF3A22691314C00DEC937 /* libiSHLinux.a */; };
 		BBECF3B9269136FB00DEC937 /* liblinux.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BBECF3B8269136E100DEC937 /* liblinux.a */; };
@@ -238,6 +240,7 @@
 		BBEF1994268066D1001225BD /* term.js in Resources */ = {isa = PBXBuildFile; fileRef = BB4A539C1FAA490C00A72ACE /* term.js */; };
 		BBEF1995268066D1001225BD /* sprite64.png in Resources */ = {isa = PBXBuildFile; fileRef = BB0B880E2589662200208600 /* sprite64.png */; };
 		BBEF1996268066D1001225BD /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = BB1B9A4223A5E96900414052 /* icon.png */; };
+		BBF06F6C2CC4C134009F5DB5 /* fchdir.c in Sources */ = {isa = PBXBuildFile; fileRef = BB0DF6F22CC4B01000EFECAE /* fchdir.c */; };
 		BBFB2C7E259026C200545EAB /* libish_emu.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BBFB2C5B2590257E00545EAB /* libish_emu.a */; };
 		BBFB2CEC2590296B00545EAB /* libish_emu.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BBFB2C5B2590257E00545EAB /* libish_emu.a */; };
 		BBFB55662158644C00DFE6DE /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = BBFB55652158644C00DFE6DE /* libresolv.tbd */; };
@@ -329,6 +332,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = BB88F48F2154760800A341FD;
 			remoteInfo = iSHFiles;
+		};
+		BBBDDF822CE00F6A0071F1F3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BB792B461F96D8E000FFB7A4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BBECF3AF269136E100DEC937;
+			remoteInfo = liblinux;
 		};
 		BBECF3B1269136E100DEC937 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -431,7 +441,7 @@
 		49302D8D277669D300C9885A /* ish.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = ish.c; sourceTree = "<group>"; };
 		49302D972777FAB400C9885A /* ish.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ish.h; sourceTree = "<group>"; };
 		493B378F290F5320000C41ED /* CLI.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = CLI.xcconfig; sourceTree = "<group>"; };
-		494D03F72727DAC6004F0CCE /* xcode-ninja.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "xcode-ninja.sh"; sourceTree = "<group>"; };
+		494D03F72727DAC6004F0CCE /* xcode-ninja.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = "xcode-ninja.sh"; path = "app/xcode-ninja.sh"; sourceTree = "<group>"; };
 		497A08BC2961168400B323CF /* AccessibilityFixes.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AccessibilityFixes.m; sourceTree = "<group>"; };
 		497F6BDA254E5C0D00C82F46 /* mem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mem.h; sourceTree = "<group>"; };
 		497F6BDB254E5C0D00C82F46 /* path.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = path.c; sourceTree = "<group>"; };
@@ -500,8 +510,8 @@
 		497F6C3D254E5C4F00C82F46 /* gen.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = gen.c; sourceTree = "<group>"; };
 		497F6C3E254E5C4F00C82F46 /* gen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gen.h; sourceTree = "<group>"; };
 		497F6C3F254E5C4F00C82F46 /* frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = frame.h; sourceTree = "<group>"; };
-		497F6C40254E5C4F00C82F46 /* jit.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = jit.c; sourceTree = "<group>"; };
-		497F6C41254E5C4F00C82F46 /* jit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = jit.h; sourceTree = "<group>"; };
+		497F6C40254E5C4F00C82F46 /* asbestos.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = asbestos.c; sourceTree = "<group>"; };
+		497F6C41254E5C4F00C82F46 /* asbestos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = asbestos.h; sourceTree = "<group>"; };
 		497F6C58254E5C7E00C82F46 /* cpuid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cpuid.h; sourceTree = "<group>"; };
 		497F6C59254E5C7E00C82F46 /* tlb.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = tlb.c; sourceTree = "<group>"; };
 		497F6C5A254E5C7E00C82F46 /* float80-test.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "float80-test.c"; sourceTree = "<group>"; };
@@ -517,8 +527,6 @@
 		497F6C64254E5C7F00C82F46 /* vec.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = vec.c; sourceTree = "<group>"; };
 		497F6C65254E5C7F00C82F46 /* regid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = regid.h; sourceTree = "<group>"; };
 		497F6C66254E5C7F00C82F46 /* float80.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = float80.c; sourceTree = "<group>"; };
-		497F6C67254E5C7F00C82F46 /* interp.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = interp.c; sourceTree = "<group>"; };
-		497F6C69254E5C7F00C82F46 /* fpu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fpu.h; sourceTree = "<group>"; };
 		497F6C6A254E5C7F00C82F46 /* modrm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = modrm.h; sourceTree = "<group>"; };
 		497F6C6B254E5C7F00C82F46 /* tlb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tlb.h; sourceTree = "<group>"; };
 		497F6C77254E5C9700C82F46 /* mm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mm.h; sourceTree = "<group>"; };
@@ -598,6 +606,9 @@
 		BB0B880E2589662200208600 /* sprite64.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sprite64.png; sourceTree = "<group>"; };
 		BB0B88172589662A00208600 /* reworked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reworked.png; sourceTree = "<group>"; };
 		BB0B88202589734A00208600 /* notsurewhatthisis.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = notsurewhatthisis.png; sourceTree = "<group>"; };
+		BB0C03002AEEC85500E5ECBB /* gen_apk_repositories.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; name = gen_apk_repositories.py; path = app/gen_apk_repositories.py; sourceTree = "<group>"; };
+		BB0DF6F22CC4B01000EFECAE /* fchdir.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = fchdir.c; sourceTree = "<group>"; };
+		BB0DF6F32CC4B01000EFECAE /* fchdir.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = fchdir.h; sourceTree = "<group>"; };
 		BB0F552D239F8A790032A2A1 /* Icons.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Icons.plist; sourceTree = "<group>"; };
 		BB0F552F239F8B360032A2A1 /* uninspired.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = uninspired.png; sourceTree = "<group>"; };
 		BB0F553123A0AB9B0032A2A1 /* pydann1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pydann1.png; sourceTree = "<group>"; };
@@ -618,7 +629,7 @@
 		BB123ACD26C9F13500419CDA /* IOSCalls.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IOSCalls.m; sourceTree = "<group>"; };
 		BB13F4DC21C5770000343E17 /* NSError+ISHErrno.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSError+ISHErrno.h"; sourceTree = "<group>"; };
 		BB13F4DD21C5770000343E17 /* NSError+ISHErrno.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSError+ISHErrno.m"; sourceTree = "<group>"; };
-		BB13F7C8200ACC24003D1C4D /* xcode-meson.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "xcode-meson.sh"; sourceTree = "<group>"; };
+		BB13F7C8200ACC24003D1C4D /* xcode-meson.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = "xcode-meson.sh"; path = "app/xcode-meson.sh"; sourceTree = "<group>"; };
 		BB13F7DC200AD81D003D1C4D /* libish.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libish.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB149E7E256DC97C00F57815 /* PassthroughView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PassthroughView.h; sourceTree = "<group>"; };
 		BB149E7F256DC97C00F57815 /* PassthroughView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PassthroughView.m; sourceTree = "<group>"; };
@@ -699,6 +710,9 @@
 		BBAEE33A249BDADC0069EBB5 /* ProgressReportViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProgressReportViewController.h; sourceTree = "<group>"; };
 		BBAEE33B249BDADC0069EBB5 /* ProgressReportViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProgressReportViewController.m; sourceTree = "<group>"; };
 		BBBCE7E421D2F02200CA00B3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/About.storyboard; sourceTree = "<group>"; };
+		BBBDDF8F2CE00F6B0071F1F3 /* libiSHLinuxUser.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libiSHLinuxUser.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		BBBDDF902CE00F8D0071F1F3 /* StaticLibLinuxUser.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = StaticLibLinuxUser.xcconfig; sourceTree = "<group>"; };
+		BBBDDF912CE0122F0071F1F3 /* emu_asbestos.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = emu_asbestos.c; path = linux/emu_asbestos.c; sourceTree = SOURCE_ROOT; };
 		BBBF7B5B2415CDBB00EC4C14 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		BBBF9CBB27C217A6002A30F7 /* PasteboardDeviceLinux.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = PasteboardDeviceLinux.c; sourceTree = "<group>"; };
 		BBBF9CC027C441C0002A30F7 /* fix_path.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = fix_path.h; sourceTree = "<group>"; };
@@ -787,6 +801,7 @@
 			files = (
 				BBECF3B9269136FB00DEC937 /* liblinux.a in Frameworks */,
 				BBECF3AE2691330F00DEC937 /* libiSHLinux.a in Frameworks */,
+				BBBDDF932CE0132F0071F1F3 /* libiSHLinuxUser.a in Frameworks */,
 				BBEF1970268066D1001225BD /* libiSHApp.a in Frameworks */,
 				BBBD741426B7BE2E00321AC5 /* libfakefs.a in Frameworks */,
 				BBEF1972268066D1001225BD /* libish_emu.a in Frameworks */,
@@ -845,14 +860,6 @@
 			path = "gadgets-aarch64";
 			sourceTree = "<group>";
 		};
-		497F6C68254E5C7F00C82F46 /* interp */ = {
-			isa = PBXGroup;
-			children = (
-				497F6C69254E5C7F00C82F46 /* fpu.h */,
-			);
-			path = interp;
-			sourceTree = "<group>";
-		};
 		BB0B848D2586A4B100208600 /* Configs */ = {
 			isa = PBXGroup;
 			children = (
@@ -869,6 +876,7 @@
 				BB28C7522689522700BDC834 /* ProjectReleaseLinux.xcconfig */,
 				BBFB2CDA259028DC00545EAB /* StaticLib.xcconfig */,
 				BBECF3BA2691379100DEC937 /* StaticLibLinux.xcconfig */,
+				BBBDDF902CE00F8D0071F1F3 /* StaticLibLinuxUser.xcconfig */,
 				BB0B859B2586F13200208600 /* XcodeDebug.xcconfig */,
 				BB0B848E2586A4CF00208600 /* XcodeDefault.xcconfig */,
 				BB0B859C2586F19000208600 /* XcodeRelease.xcconfig */,
@@ -905,6 +913,7 @@
 			children = (
 				BB13F7C8200ACC24003D1C4D /* xcode-meson.sh */,
 				494D03F72727DAC6004F0CCE /* xcode-ninja.sh */,
+				BB0C03002AEEC85500E5ECBB /* gen_apk_repositories.py */,
 			);
 			name = Scripts;
 			sourceTree = "<group>";
@@ -977,16 +986,16 @@
 		BB4A53931FAA393B00A72ACE /* most of the code */ = {
 			isa = PBXGroup;
 			children = (
+				BB7D93822087C2890008DA78 /* main.c */,
+				BB7D93812087C2890008DA78 /* debug.h */,
+				BB7D933B2087C2880008DA78 /* misc.h */,
+				BB7D93352087C2880008DA78 /* xX_main_Xx.h */,
+				BB88F4712152F75A00A341FD /* asbestos */,
 				BB8636F82167F4F200E7ADC0 /* emu */,
 				BB7D936A2087C2890008DA78 /* fs */,
-				BB88F4712152F75A00A341FD /* jit */,
 				BB7D933C2087C2880008DA78 /* kernel */,
 				BB2D71072354244700A10D1E /* platform */,
 				BB7D93362087C2880008DA78 /* util */,
-				BB7D93822087C2890008DA78 /* main.c */,
-				BB7D933B2087C2880008DA78 /* misc.h */,
-				BB7D93812087C2890008DA78 /* debug.h */,
-				BB7D93352087C2880008DA78 /* xX_main_Xx.h */,
 			);
 			name = "most of the code";
 			sourceTree = "<group>";
@@ -1030,6 +1039,7 @@
 				BB21A16F2689041500BD19B4 /* libfakefs.a */,
 				BBECF3A22691314C00DEC937 /* libiSHLinux.a */,
 				BBECF3B8269136E100DEC937 /* liblinux.a */,
+				BBBDDF8F2CE00F6B0071F1F3 /* libiSHLinuxUser.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1090,6 +1100,8 @@
 			isa = PBXGroup;
 			children = (
 				497F6CD3254E5CC800C82F46 /* bits.h */,
+				BB0DF6F22CC4B01000EFECAE /* fchdir.c */,
+				BB0DF6F32CC4B01000EFECAE /* fchdir.h */,
 				497F6CCF254E5CC800C82F46 /* fifo.c */,
 				497F6CCB254E5CC800C82F46 /* fifo.h */,
 				497F6CD0254E5CC800C82F46 /* list.h */,
@@ -1216,8 +1228,6 @@
 				497F6C5B254E5C7E00C82F46 /* float80.h */,
 				497F6C5D254E5C7E00C82F46 /* fpu.c */,
 				497F6C63254E5C7F00C82F46 /* fpu.h */,
-				497F6C68254E5C7F00C82F46 /* interp */,
-				497F6C67254E5C7F00C82F46 /* interp.c */,
 				497F6C5C254E5C7E00C82F46 /* interrupt.h */,
 				497F6C60254E5C7F00C82F46 /* memory.c */,
 				497F6C61254E5C7F00C82F46 /* memory.h */,
@@ -1231,21 +1241,21 @@
 			path = emu;
 			sourceTree = "<group>";
 		};
-		BB88F4712152F75A00A341FD /* jit */ = {
+		BB88F4712152F75A00A341FD /* asbestos */ = {
 			isa = PBXGroup;
 			children = (
-				497F6C3F254E5C4F00C82F46 /* frame.h */,
-				497F6C31254E5C4F00C82F46 /* gadgets-aarch64 */,
-				497F6C30254E5C4F00C82F46 /* gadgets-generic.h */,
-				497F6C27254E5C4F00C82F46 /* gadgets-x86_64 */,
+				497F6C40254E5C4F00C82F46 /* asbestos.c */,
 				497F6C3D254E5C4F00C82F46 /* gen.c */,
-				497F6C3E254E5C4F00C82F46 /* gen.h */,
 				497F6C3B254E5C4F00C82F46 /* helpers.c */,
-				497F6C40254E5C4F00C82F46 /* jit.c */,
-				497F6C41254E5C4F00C82F46 /* jit.h */,
 				497F6C3C254E5C4F00C82F46 /* offsets.c */,
+				497F6C41254E5C4F00C82F46 /* asbestos.h */,
+				497F6C3F254E5C4F00C82F46 /* frame.h */,
+				497F6C30254E5C4F00C82F46 /* gadgets-generic.h */,
+				497F6C3E254E5C4F00C82F46 /* gen.h */,
+				497F6C31254E5C4F00C82F46 /* gadgets-aarch64 */,
+				497F6C27254E5C4F00C82F46 /* gadgets-x86_64 */,
 			);
-			path = jit;
+			path = asbestos;
 			sourceTree = "<group>";
 		};
 		BB88F4912154760800A341FD /* FileProvider */ = {
@@ -1275,6 +1285,7 @@
 				BBEEA9E9277DAB400069495B /* LinuxPTY.c */,
 				BBEEA9E7277D25090069495B /* LinuxRoot.c */,
 				BB8C3AFD26B7B8AF00E38DDC /* fakefs.c */,
+				BBBDDF912CE0122F0071F1F3 /* emu_asbestos.c */,
 			);
 			name = LinuxInterop;
 			sourceTree = "<group>";
@@ -1354,7 +1365,7 @@
 			buildConfigurationList = BB13F7CB200ACC31003D1C4D /* Build configuration list for PBXLegacyTarget "Meson" */;
 			buildPhases = (
 			);
-			buildToolPath = "$(SRCROOT)/xcode-meson.sh";
+			buildToolPath = "$(SRCROOT)/app/xcode-meson.sh";
 			buildWorkingDirectory = "";
 			dependencies = (
 			);
@@ -1368,7 +1379,7 @@
 			buildConfigurationList = BB13F7D1200ACCA2003D1C4D /* Build configuration list for PBXLegacyTarget "Ninja" */;
 			buildPhases = (
 			);
-			buildToolPath = "$(SRCROOT)/xcode-ninja.sh";
+			buildToolPath = "$(SRCROOT)/app/xcode-ninja.sh";
 			buildWorkingDirectory = "$(MESON_BUILD_DIR)";
 			dependencies = (
 				BB13F7D5200ACCA8003D1C4D /* PBXTargetDependency */,
@@ -1505,6 +1516,22 @@
 			productName = iSHFiles;
 			productReference = BB88F4902154760800A341FD /* iSHFileProvider.appex */;
 			productType = "com.apple.product-type.app-extension";
+		};
+		BBBDDF802CE00F6A0071F1F3 /* libiSHLinuxUser */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BBBDDF8A2CE00F6A0071F1F3 /* Build configuration list for PBXNativeTarget "libiSHLinuxUser" */;
+			buildPhases = (
+				BBBDDF832CE00F6A0071F1F3 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BBBDDF812CE00F6A0071F1F3 /* PBXTargetDependency */,
+			);
+			name = libiSHLinuxUser;
+			productName = iSHLinux;
+			productReference = BBBDDF8F2CE00F6B0071F1F3 /* libiSHLinuxUser.a */;
+			productType = "com.apple.product-type.library.static";
 		};
 		BBECF3A12691314C00DEC937 /* libiSHLinux */ = {
 			isa = PBXNativeTarget;
@@ -1681,6 +1708,7 @@
 				BBEF191D26806364001225BD /* libiSHApp */,
 				BBEF1964268066D1001225BD /* iSH+Linux */,
 				BBECF3A12691314C00DEC937 /* libiSHLinux */,
+				BBBDDF802CE00F6A0071F1F3 /* libiSHLinuxUser */,
 				BB88F48F2154760800A341FD /* iSHFileProvider */,
 				BB41591B255EF9E300E0950C /* iSHUITests */,
 				BB13F7CA200ACC31003D1C4D /* Meson */,
@@ -1812,6 +1840,7 @@
 			inputPaths = (
 				"$(SRCROOT)/deps/aports/main/x86/index.txt",
 				"$(SRCROOT)/deps/aports/community/x86/index.txt",
+				"$(SRCROOT)/app/gen_apk_repositories.py",
 			);
 			name = "Generate APK Repositories File";
 			outputFileListPaths = (
@@ -1820,8 +1849,8 @@
 				"$(BUILT_PRODUCTS_DIR)/$(CONTENTS_FOLDER_PATH)/repositories.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /usr/bin/python3;
-			shellScript = "import os\ndef trim(x, start, end):\n    assert x.startswith(start)\n    assert x.endswith(end)\n    return x[len(start):-len(end)]\nrepos_file = []\nfor repo in ['main', 'community']:\n    with open(f'{os.environ[\"SRCROOT\"]}/deps/aports/{repo}/x86/index.txt') as f:\n        index_name = f.read()\n    index_name = trim(index_name, 'APKINDEX-', '.tar.gz\\n')\n    repos_file.append(f'http://apk.ish.app/{index_name}/{repo}')\nwith open(os.path.join(os.environ['BUILT_PRODUCTS_DIR'], os.environ['CONTENTS_FOLDER_PATH'], 'repositories.txt'), 'w') as f:\n    for line in repos_file:\n        print(line, file=f)\n";
+			shellPath = "/bin/sh -e";
+			shellScript = "python3 $SRCROOT/app/gen_apk_repositories.py\n";
 		};
 		BB13F813200AEFAC003D1C4D /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1833,6 +1862,7 @@
 				"$(MESON_BUILD_DIR)/$(PRODUCT_NAME).a",
 			);
 			outputPaths = (
+				"$(CONFIGURATION_BUILD_DIR)/$(PRODUCT_NAME).a",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1848,6 +1878,7 @@
 				"$(MESON_BUILD_DIR)/$(PRODUCT_NAME).a",
 			);
 			outputPaths = (
+				"$(CONFIGURATION_BUILD_DIR)/$(PRODUCT_NAME).a",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1896,9 +1927,10 @@
 			files = (
 			);
 			inputPaths = (
-				"$(MESON_BUILD_DIR)/$(PRODUCT_NAME).a",
+				"$(MESON_BUILD_DIR)/deps/$(PRODUCT_NAME).a",
 			);
 			outputPaths = (
+				"$(CONFIGURATION_BUILD_DIR)/$(PRODUCT_NAME).a",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1930,6 +1962,7 @@
 			inputPaths = (
 				"$(SRCROOT)/deps/aports/main/x86/index.txt",
 				"$(SRCROOT)/deps/aports/community/x86/index.txt",
+				"$(SRCROOT)/app/gen_apk_repositories.py",
 			);
 			name = "Generate APK Repositories File";
 			outputFileListPaths = (
@@ -1938,8 +1971,8 @@
 				"$(BUILT_PRODUCTS_DIR)/$(CONTENTS_FOLDER_PATH)/repositories.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /usr/bin/python3;
-			shellScript = "import os\ndef trim(x, start, end):\n    assert x.startswith(start)\n    assert x.endswith(end)\n    return x[len(start):-len(end)]\nrepos_file = []\nfor repo in ['main', 'community']:\n    with open(f'{os.environ[\"SRCROOT\"]}/deps/aports/{repo}/x86/index.txt') as f:\n        index_name = f.read()\n    index_name = trim(index_name, 'APKINDEX-', '.tar.gz\\n')\n    repos_file.append(f'http://apk.ish.app/{index_name}/{repo}')\nwith open(os.path.join(os.environ['BUILT_PRODUCTS_DIR'], os.environ['CONTENTS_FOLDER_PATH'], 'repositories.txt'), 'w') as f:\n    for line in repos_file:\n        print(line, file=f)\n";
+			shellPath = "/bin/sh -e";
+			shellScript = "python3 $SRCROOT/app/gen_apk_repositories.py\n";
 		};
 		BBEF197B268066D1001225BD /* Compile JavaScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1984,6 +2017,7 @@
 				"$(MESON_BUILD_DIR)/$(PRODUCT_NAME).a",
 			);
 			outputPaths = (
+				"$(CONFIGURATION_BUILD_DIR)/$(PRODUCT_NAME).a",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1999,7 +2033,6 @@
 				497F6CF5254E5EA500C82F46 /* float80-test.c in Sources */,
 				497F6CF6254E5EA500C82F46 /* float80.c in Sources */,
 				497F6CF7254E5EA500C82F46 /* fpu.c in Sources */,
-				497F6CF8254E5EA500C82F46 /* interp.c in Sources */,
 				497F6CF9254E5EA500C82F46 /* memory.c in Sources */,
 				497F6CFA254E5EA500C82F46 /* tlb.c in Sources */,
 				497F6CFB254E5EA500C82F46 /* vec.c in Sources */,
@@ -2033,7 +2066,7 @@
 				497F6D17254E5EA600C82F46 /* tty.c in Sources */,
 				497F6D18254E5EA600C82F46 /* gen.c in Sources */,
 				497F6D19254E5EA600C82F46 /* helpers.c in Sources */,
-				497F6D1A254E5EA600C82F46 /* jit.c in Sources */,
+				497F6D1A254E5EA600C82F46 /* asbestos.c in Sources */,
 				497F6D1B254E5EA600C82F46 /* offsets.c in Sources */,
 				497F6D1C254E5EA600C82F46 /* calls.c in Sources */,
 				497F6D1D254E5EA600C82F46 /* epoll.c in Sources */,
@@ -2086,6 +2119,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BBF06F6C2CC4C134009F5DB5 /* fchdir.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2117,7 +2151,16 @@
 				BBBFE94921C5CFF100509DD5 /* NSError+ISHErrno.m in Sources */,
 				BB9C7B87240A2B1E00F5D4F0 /* AppGroup.m in Sources */,
 				BB88F4942154760800A341FD /* FileProviderExtension.m in Sources */,
+				BBE64AC22A198FCC00589372 /* ExceptionExfiltrator.m in Sources */,
 				BB88F4972154760800A341FD /* FileProviderItem.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BBBDDF832CE00F6A0071F1F3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BBBDDF922CE0122F0071F1F3 /* emu_asbestos.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2224,6 +2267,11 @@
 			isa = PBXTargetDependency;
 			target = BB88F48F2154760800A341FD /* iSHFileProvider */;
 			targetProxy = BB88F49D2154760800A341FD /* PBXContainerItemProxy */;
+		};
+		BBBDDF812CE00F6A0071F1F3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BBECF3AF269136E100DEC937 /* liblinux */;
+			targetProxy = BBBDDF822CE00F6A0071F1F3 /* PBXContainerItemProxy */;
 		};
 		BBECF3B0269136E100DEC937 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -2437,7 +2485,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = BB0B85A42586F1CB00208600 /* ProjectDebug.xcconfig */;
 			buildSettings = {
-				CURRENT_PROJECT_VERSION = 492;
+				CURRENT_PROJECT_VERSION = 812;
 			};
 			name = "Debug-ApplePleaseFixFB19282108";
 		};
@@ -2445,7 +2493,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = BB0B85A52586F1E100208600 /* ProjectRelease.xcconfig */;
 			buildSettings = {
-				CURRENT_PROJECT_VERSION = 492;
+				CURRENT_PROJECT_VERSION = 812;
 			};
 			name = Release;
 		};
@@ -2467,7 +2515,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = BB28C7532689522C00BDC834 /* ProjectDebugLinux.xcconfig */;
 			buildSettings = {
-				CURRENT_PROJECT_VERSION = 492;
+				CURRENT_PROJECT_VERSION = 812;
 			};
 			name = DebugLinux;
 		};
@@ -2593,6 +2641,38 @@
 			};
 			name = Release;
 		};
+		BBBDDF8B2CE00F6A0071F1F3 /* Debug-ApplePleaseFixFB19282108 */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BBBDDF902CE00F8D0071F1F3 /* StaticLibLinuxUser.xcconfig */;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = "Debug-ApplePleaseFixFB19282108";
+		};
+		BBBDDF8C2CE00F6A0071F1F3 /* DebugLinux */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BBBDDF902CE00F8D0071F1F3 /* StaticLibLinuxUser.xcconfig */;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = DebugLinux;
+		};
+		BBBDDF8D2CE00F6A0071F1F3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BBBDDF902CE00F8D0071F1F3 /* StaticLibLinuxUser.xcconfig */;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		BBBDDF8E2CE00F6A0071F1F3 /* ReleaseLinux */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BBBDDF902CE00F8D0071F1F3 /* StaticLibLinuxUser.xcconfig */;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = ReleaseLinux;
+		};
 		BBECF3A92691314C00DEC937 /* Debug-ApplePleaseFixFB19282108 */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = BBECF3BA2691379100DEC937 /* StaticLibLinux.xcconfig */;
@@ -2681,7 +2761,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = BB28C7522689522700BDC834 /* ProjectReleaseLinux.xcconfig */;
 			buildSettings = {
-				CURRENT_PROJECT_VERSION = 492;
+				CURRENT_PROJECT_VERSION = 812;
 			};
 			name = ReleaseLinux;
 		};
@@ -2916,6 +2996,17 @@
 				BB7F62092688EAB5003C0220 /* DebugLinux */,
 				BB88F4A12154760800A341FD /* Release */,
 				BBEF19AF26806D1F001225BD /* ReleaseLinux */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BBBDDF8A2CE00F6A0071F1F3 /* Build configuration list for PBXNativeTarget "libiSHLinuxUser" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BBBDDF8B2CE00F6A0071F1F3 /* Debug-ApplePleaseFixFB19282108 */,
+				BBBDDF8C2CE00F6A0071F1F3 /* DebugLinux */,
+				BBBDDF8D2CE00F6A0071F1F3 /* Release */,
+				BBBDDF8E2CE00F6A0071F1F3 /* ReleaseLinux */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

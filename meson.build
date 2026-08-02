@@ -40,7 +40,7 @@ dependencies = [librt, libm, libdl, threads, sqlite3]
 subdir('vdso') # ish depends on the vdso
 
 offsets = custom_target('offsets',
-    output: 'cpu-offsets.h', input: 'jit/offsets.c', depfile: 'cpu-offsets.h.d',
+    output: 'cpu-offsets.h', input: 'asbestos/offsets.c', depfile: 'cpu-offsets.h.d',
     command: [find_program('tools/staticdefine.sh'), '@OUTDIR@/compile_commands.json', '@INPUT@', '@OUTPUT@', '@DEPFILE@'])
 
 emu_src = [
@@ -51,26 +51,20 @@ emu_src = [
     'emu/float80.c',
 
 ]
-if get_option('engine') == 'jit'
-    gadgets = 'jit/gadgets-' + host_machine.cpu_family()
-    emu_src += [
-        'jit/jit.c',
-        'jit/gen.c',
-        'jit/helpers.c',
-        gadgets+'/entry.S',
-        gadgets+'/memory.S',
-        gadgets+'/control.S',
-        gadgets+'/math.S',
-        gadgets+'/bits.S',
-        gadgets+'/string.S',
-        gadgets+'/misc.S',
-        offsets,
-    ]
-else
-    emu_src += [
-        'emu/interp.c',
-    ]
-endif
+gadgets = 'asbestos/gadgets-' + host_machine.cpu_family()
+emu_src += [
+    'asbestos/asbestos.c',
+    'asbestos/gen.c',
+    'asbestos/helpers.c',
+    gadgets+'/entry.S',
+    gadgets+'/memory.S',
+    gadgets+'/control.S',
+    gadgets+'/math.S',
+    gadgets+'/bits.S',
+    gadgets+'/string.S',
+    gadgets+'/misc.S',
+    offsets,
+]
 
 libish_emu = library('ish_emu', emu_src, include_directories: includes)
 
@@ -82,11 +76,16 @@ libfakefs = library('fakefs',
 subdir('deps')
 
 if get_option('kernel') == 'ish'
+    if get_option('engine') != 'asbestos'
+        error('Only asbestos is supported with ish kernel')
+    endif
+
     src = [
         'kernel/init.c',
         'kernel/errno.c',
 
         'kernel/calls.c',
+        'kernel/memory.c',
         'kernel/user.c',
         'kernel/vdso.c', vdso,
         'kernel/task.c',
@@ -150,8 +149,7 @@ if get_option('kernel') == 'ish'
         'util/timer.c',
         'util/sync.c',
         'util/fifo.c',
-
-        'emu/memory.c',
+        'util/fchdir.c',
 
         'platform/' + host_machine.system() + '.c',
     ]
@@ -168,19 +166,37 @@ if get_option('kernel') == 'ish'
     endif
 
 elif get_option('kernel') == 'linux'
-    modules = static_library('linux_modules', [
+    kernel_src = [
         'linux/main.c',
         'linux/fakefs.c',
-    ], dependencies: [linux_headers, sqlite3])
-    executable('ish', [build_linux],
+    ]
+    user_src = []
+    emu_deps = []
+
+    if get_option('engine') == 'asbestos'
+        user_src += 'linux/emu_asbestos.c'
+        emu_deps += declare_dependency(link_with: libish_emu)
+    elif get_option('engine') == 'unicorn'
+        user_src += 'linux/emu_unicorn.c'
+        kernel_src += 'linux/emu_unicorn_kernel.c'
+        emu_deps += declare_dependency(
+            dependencies: [cc.find_library('unicorn', dirs: [meson.current_source_dir()+'/deps/unicorn/build'])],
+            include_directories: include_directories('deps/unicorn/include'),
+        )
+    endif
+
+    modules = static_library('linux_modules', kernel_src, dependencies: [linux_headers, sqlite3])
+    user_modules = static_library('linux_user', user_src, dependencies: [user_linux_headers] + emu_deps)
+    executable('ish',
+        build_linux,
         link_with: [libfakefs],
         dependencies: [
             liblinux,
             libm,
             libdl,
             threads,
-            declare_dependency(link_whole: modules),
-        ])
+            declare_dependency(link_whole: [modules, user_modules]),
+        ] + emu_deps)
 endif
 
 subdir('tools')

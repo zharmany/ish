@@ -14,7 +14,7 @@ static void db_check_error(struct fakefs_db *fs) {
             break;
 
         default:
-            die("sqlite error: %s", sqlite3_errmsg(fs->db));
+            die("sqlite error: %d %#x %s", errcode, sqlite3_extended_errcode(fs->db), sqlite3_errmsg(fs->db));
     }
 }
 
@@ -39,9 +39,13 @@ void db_exec_reset(struct fakefs_db *fs, sqlite3_stmt *stmt) {
     db_reset(fs, stmt);
 }
 
-void db_begin(struct fakefs_db *fs) {
+void db_begin_read(struct fakefs_db *fs) {
     sqlite3_mutex_enter(fs->lock);
-    db_exec_reset(fs, fs->stmt.begin);
+    db_exec_reset(fs, fs->stmt.begin_deferred);
+}
+void db_begin_write(struct fakefs_db *fs) {
+    sqlite3_mutex_enter(fs->lock);
+    db_exec_reset(fs, fs->stmt.begin_immediate);
 }
 void db_commit(struct fakefs_db *fs) {
     db_exec_reset(fs, fs->stmt.commit);
@@ -89,13 +93,18 @@ inode_t path_create(struct fakefs_db *fs, const char *path, struct ish_stat *sta
     return inode;
 }
 
-void inode_read_stat(struct fakefs_db *fs, inode_t inode, struct ish_stat *stat) {
+void inode_read_stat_or_die(struct fakefs_db *fs, inode_t inode, struct ish_stat *stat) {
+    if (!inode_read_stat_if_exist(fs, inode, stat))
+        die("inode_read_stat(%llu): missing inode", (unsigned long long) inode);
+}
+bool inode_read_stat_if_exist(struct fakefs_db *fs, inode_t inode, struct ish_stat *stat) {
     // select stat from stats where inode = ?
     sqlite3_bind_int64(fs->stmt.inode_read_stat, 1, inode);
-    if (!db_exec(fs, fs->stmt.inode_read_stat))
-        die("inode_read_stat(%llu): missing inode", (unsigned long long) inode);
-    *stat = *(struct ish_stat *) sqlite3_column_blob(fs->stmt.inode_read_stat, 0);
+    bool exist = db_exec(fs, fs->stmt.inode_read_stat);
+    if (exist)
+        *stat = *(struct ish_stat *) sqlite3_column_blob(fs->stmt.inode_read_stat, 0);
     db_reset(fs, fs->stmt.inode_read_stat);
+    return exist;
 }
 void inode_write_stat(struct fakefs_db *fs, inode_t inode, struct ish_stat *stat) {
     // update stats set stat = ? where inode = ?
@@ -238,7 +247,8 @@ int fake_db_init(struct fakefs_db *fs, const char *db_path, int root_fd) {
     sqlite3_finalize(statement);
 
     fs->lock = sqlite3_mutex_alloc(SQLITE_MUTEX_FAST);
-    fs->stmt.begin = db_prepare(fs, "begin");
+    fs->stmt.begin_deferred = db_prepare(fs, "begin deferred");
+    fs->stmt.begin_immediate = db_prepare(fs, "begin immediate");
     fs->stmt.commit = db_prepare(fs, "commit");
     fs->stmt.rollback = db_prepare(fs, "rollback");
     fs->stmt.path_get_inode = db_prepare(fs, "select inode from paths where path = ?");
@@ -258,7 +268,8 @@ int fake_db_init(struct fakefs_db *fs, const char *db_path, int root_fd) {
 
 int fake_db_deinit(struct fakefs_db *fs) {
     if (fs->db) {
-        sqlite3_finalize(fs->stmt.begin);
+        sqlite3_finalize(fs->stmt.begin_deferred);
+        sqlite3_finalize(fs->stmt.begin_immediate);
         sqlite3_finalize(fs->stmt.commit);
         sqlite3_finalize(fs->stmt.rollback);
         sqlite3_finalize(fs->stmt.path_get_inode);

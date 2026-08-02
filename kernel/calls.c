@@ -2,7 +2,7 @@
 #include "debug.h"
 #include "kernel/calls.h"
 #include "emu/interrupt.h"
-#include "emu/memory.h"
+#include "kernel/memory.h"
 #include "kernel/signal.h"
 #include "kernel/task.h"
 
@@ -19,7 +19,7 @@ dword_t syscall_success_stub(void) {
     return 0;
 }
 
-#if is_gcc(8)
+#if is_gcc(8) || is_clang(21)
 #pragma GCC diagnostic ignored "-Wcast-function-type"
 #endif
 syscall_t syscall_table[] = {
@@ -160,6 +160,8 @@ syscall_t syscall_table[] = {
     [212] = (syscall_t) sys_chown32,
     [213] = (syscall_t) sys_setuid,
     [214] = (syscall_t) sys_setgid,
+    [215] = (syscall_t) syscall_stub, // setfsuid
+    [216] = (syscall_t) syscall_stub, // setfsgid
     [219] = (syscall_t) sys_madvise,
     [220] = (syscall_t) sys_getdents64,
     [221] = (syscall_t) sys_fcntl,
@@ -244,8 +246,9 @@ syscall_t syscall_table[] = {
     [373] = (syscall_t) sys_shutdown,
     [375] = (syscall_t) syscall_silent_stub, // membarrier
     [377] = (syscall_t) sys_copy_file_range,
-    [383] = (syscall_t) syscall_silent_stub, // statx
+    [383] = (syscall_t) sys_statx,
     [384] = (syscall_t) sys_arch_prctl,
+    [422] = (syscall_t) syscall_silent_stub, // futex_time64
     [439] = (syscall_t) syscall_silent_stub, // faccessat2
 };
 
@@ -259,7 +262,7 @@ void handle_interrupt(int interrupt) {
         unsigned syscall_num = cpu->eax;
         if (syscall_num >= NUM_SYSCALLS || syscall_table[syscall_num] == NULL) {
             printk("%d(%s) missing syscall %d\n", current->pid, current->comm, syscall_num);
-            deliver_signal(current, SIGSYS_, SIGINFO_NIL);
+            cpu->eax = _ENOSYS;
         } else {
             if (syscall_table[syscall_num] == (syscall_t) syscall_stub) {
                 printk("%d(%s) stub syscall %d\n", current->pid, current->comm, syscall_num);

@@ -1,9 +1,18 @@
 if get_option('kernel') == 'linux'
+    kconfig = []
+
+    if get_option('engine') in ['asbestos', 'unicorn']
+        kconfig += 'CONFIG_ISH_EMULATOR_NONE=y'
+    else
+        error('Engine "' + get_option('engine') + '" not supported for linux kernel')
+    endif
+
+    kconfig += get_option('kconfig')
     meson_fragment = configure_file(
         command: [
             find_program('kconfig-fragment.sh'),
             '@OUTPUT@',
-        ] + get_option('kconfig'),
+        ] + kconfig,
         output: 'linux-meson.config',
     )
 
@@ -13,8 +22,8 @@ if get_option('kernel') == 'linux'
             'HOSTCC='+ ' '.join(meson.get_compiler('c', native: true).cmd_array() + get_option('build.c_args')),
             'CC='+ ' '.join(meson.get_compiler('c', native: false).cmd_array() + get_option('c_args')),
             # hack to find the right directories because meson is bad
-            'ISH_CFLAGS='+ '-I'+meson.project_source_root(),
-            'LIB_ISH_EMU='+ meson.project_build_root() / 'libish_emu.a',
+            'ISH_SRC='+ meson.project_source_root(),
+            'ISH_BUILD='+ meson.project_build_root(),
             'KCONFIG_FRAGMENTS='+ ' '.join([
                 meson.project_source_root() / 'deps/linux.config',
                 meson.project_build_root() / 'deps/linux-meson.config',
@@ -30,7 +39,6 @@ if get_option('kernel') == 'linux'
             'linux.config',
             meson_fragment,
         ],
-        depends: [libish_emu],
         console: true,
         depfile: 'linux.d',
         output: ['liblinux.a', 'linux'])
@@ -46,7 +54,6 @@ if get_option('kernel') == 'linux'
         include_directories: [include_directories(
             'linux/arch/ish/include',
             'linux/arch/ish/include/generated',
-            'linux/arch/ish/include/ishemu',
             'linux/include',
             'linux/arch/ish/include/uapi',
             'linux/arch/ish/include/generated/uapi',
@@ -72,8 +79,21 @@ if get_option('kernel') == 'linux'
         sources: [build_linux[1]],
     )
 
+    user_linux_headers = declare_dependency(
+        include_directories: include_directories(
+            'linux/arch/ish/include',
+            'linux/include',
+        ),
+        compile_args: [
+            '-include', 'user.h',
+            '-include', 'linux/kconfig.h',
+        ],
+        sources: [build_linux[1]],
+    )
+
     if host_machine.system() == 'darwin'
         liblinux_link_args = [
+            '-Wl,-ld_classic',
             '-sectalign', '__DATA', '__percpu_first', '1000',
             '-sectalign', '__DATA', '__tracepoints', '20',
         ]
@@ -83,7 +103,6 @@ if get_option('kernel') == 'linux'
         ]
     endif
     liblinux = declare_dependency(
-        link_with: [libish_emu],
         link_whole: [build_linux[0]],
         sources: [build_linux[1]],
         link_args: liblinux_link_args,

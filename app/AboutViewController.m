@@ -10,6 +10,7 @@
 #import "CurrentRoot.h"
 #import "AppGroup.h"
 #import "UserPreferences.h"
+#import "iOSFS.h"
 #import "UIApplication+OpenURL.h"
 #import "NSObject+SaneKVO.h"
 
@@ -22,15 +23,18 @@
 
 @property (weak, nonatomic) IBOutlet UITableViewCell *sendFeedback;
 @property (weak, nonatomic) IBOutlet UITableViewCell *openGithub;
-@property (weak, nonatomic) IBOutlet UITableViewCell *openTwitter;
+@property (weak, nonatomic) IBOutlet UITableViewCell *openFediverse;
 @property (weak, nonatomic) IBOutlet UITableViewCell *openDiscord;
 
 @property (weak, nonatomic) IBOutlet UITableViewCell *upgradeApkCell;
 @property (weak, nonatomic) IBOutlet UILabel *upgradeApkLabel;
 @property (weak, nonatomic) IBOutlet UIView *upgradeApkBadge;
 @property (weak, nonatomic) IBOutlet UITableViewCell *exportContainerCell;
+@property (weak, nonatomic) IBOutlet UITableViewCell *resetMountsCell;
 
 @property (weak, nonatomic) IBOutlet UILabel *versionLabel;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *saddamHussein;
 
 @end
 
@@ -66,6 +70,11 @@
     [self _updateUI];
 }
 
+- (void)updateViewConstraints {
+    self.saddamHussein.constant = UIEdgeInsetsInsetRect(self.tableView.frame, self.tableView.adjustedContentInset).size.height;
+    [super updateViewConstraints];
+}
+
 - (IBAction)dismiss:(id)sender {
     [self dismissViewControllerAnimated:self completion:nil];
 }
@@ -97,8 +106,8 @@
         [UIApplication openURL:@"mailto:tblodt@icloud.com?subject=Feedback%20for%20iSH"];
     } else if (cell == self.openGithub) {
         [UIApplication openURL:@"https://github.com/ish-app/ish"];
-    } else if (cell == self.openTwitter) {
-        [UIApplication openURL:@"https://twitter.com/tblodt"];
+    } else if (cell == self.openFediverse) {
+        [UIApplication openURL:@"https://publ.ish.app/ish"];
     } else if (cell == self.openDiscord) {
         [UIApplication openURL:@"https://discord.gg/HFAXj44"];
     } else if (cell == self.exportContainerCell) {
@@ -109,6 +118,10 @@
         [NSFileManager.defaultManager copyItemAtURL:[container URLByAppendingPathComponent:@"roots"]
                                               toURL:[documents URLByAppendingPathComponent:@"roots copy"]
                                               error:nil];
+    } else if (cell == self.resetMountsCell) {
+#if !ISH_LINUX
+        iosfs_clear_all_bookmarks();
+#endif
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
@@ -118,9 +131,9 @@
         if (!FsIsManaged()) {
             return @"The current filesystem is not managed by iSH.";
         } else if (!FsNeedsRepositoryUpdate()) {
-            return [NSString stringWithFormat:@"The current filesystem is using %s, which is the latest version.", NEWEST_APK_VERSION];
+            return [NSString stringWithFormat:@"The current filesystem is using %s, which is the latest version.", CURRENT_APK_VERSION_STRING];
         } else {
-            return [NSString stringWithFormat:@"An upgrade to %s is available.", NEWEST_APK_VERSION];
+            return [NSString stringWithFormat:@"An upgrade to %s is available.", CURRENT_APK_VERSION_STRING];
         }
     }
     return [super tableView:tableView titleForFooterInSection:section];

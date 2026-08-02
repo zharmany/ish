@@ -45,7 +45,7 @@ static int remove_directory(const char *path) {
 #define remove_directory linux_remove_directory
 #endif
 
-void FsInitialize() {
+void FsInitialize(void) {
     // /ish/version is the last ish version that opened this root. Used to migrate the filesystem.
     char buf[1000];
     ssize_t n = read_file("/ish/version", buf, sizeof(buf));
@@ -66,7 +66,8 @@ void FsInitialize() {
             fs_ish_apk_version = version.intValue;
         }
 
-        if (fs_ish_apk_version >= COMPATIBLE_APK_VERSION)
+        // If no newer value for CURRENT_APK_VERSION, do silent update.
+        if (fs_ish_apk_version >= CURRENT_APK_VERSION)
             FsUpdateRepositories();
 
         if (currentVersion.intValue > fs_ish_version) {
@@ -76,15 +77,15 @@ void FsInitialize() {
     }
 }
 
-bool FsIsManaged() {
+bool FsIsManaged(void) {
     return fs_ish_version != 0;
 }
 
-bool FsNeedsRepositoryUpdate() {
-    return FsIsManaged() && fs_ish_apk_version < COMPATIBLE_APK_VERSION;
+bool FsNeedsRepositoryUpdate(void) {
+    return FsIsManaged() && fs_ish_apk_version < CURRENT_APK_VERSION;
 }
 
-void FsUpdateOnlyRepositoriesFile() {
+void FsUpdateOnlyRepositoriesFile(void) {
     NSURL *repositories = [NSBundle.mainBundle URLForResource:@"repositories" withExtension:@"txt"];
     if (repositories != nil) {
         NSMutableData *repositoriesData = [@"# This file contains pinned repositories managed by iSH. If the /ish directory\n"
@@ -95,11 +96,10 @@ void FsUpdateOnlyRepositoriesFile() {
     }
 }
 
-void FsUpdateRepositories() {
-    NSString *currentVersion = NSBundle.mainBundle.infoDictionary[(__bridge NSString *) kCFBundleVersionKey];
-    NSString *currentVersionFile = [NSString stringWithFormat:@"%@\n", currentVersion];
+void FsUpdateRepositories(void) {
     FsUpdateOnlyRepositoriesFile();
-    fs_ish_apk_version = currentVersion.intValue;
+    fs_ish_apk_version = CURRENT_APK_VERSION;
+    NSString *currentVersionFile = [NSString stringWithFormat:@"%d\n", fs_ish_apk_version];
     write_file("/ish/apk-version", currentVersionFile.UTF8String, [currentVersionFile lengthOfBytesUsingEncoding:NSUTF8StringEncoding]);
     remove_directory("/ish/apk");
     dispatch_async(dispatch_get_main_queue(), ^{
